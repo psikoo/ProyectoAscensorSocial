@@ -1,0 +1,52 @@
+# https://developers.cloudflare.com/fundamentals/reference/network-ports/
+
+services:
+  db:
+    container_name: postgreSQL-AS
+    image: postgres:18
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "500:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin4-AS
+    image: dpage/pgadmin4:9
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - db
+  
+  # nginx:
+  #   container_name: nginx-AS
+  #   image: nginx:1.29.3
+  #   restart: always
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - type: bind
+  #       source: /home/cait/projects
+  #       target: /home/cait/projects
+  #     - type: bind
+  #       source: ./nginx.conf
+  #       target: /etc/nginx/conf.d/default.conf
+  #   links:
+  #     - db
+  #   depends_on:
+  #     - db
+
+volumes:
+  pgdata:
+  pgadmin:
