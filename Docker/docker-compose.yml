@@ -12,7 +12,7 @@ services:
     ports:
       - "500:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdataAS:/var/lib/postgresql/data
 
   pgadmin:
     container_name: pgadmin4-AS
@@ -24,7 +24,7 @@ services:
     ports:
       - "5050:80"
     volumes:
-      - pgadmin:/var/lib/pgadmin
+      - pgadminAS:/var/lib/pgadmin
     depends_on:
       - db
   
@@ -48,5 +48,5 @@ services:
   #     - db
 
 volumes:
-  pgdata:
-  pgadmin:
+  pgdataAS:
+  pgadminAS:
