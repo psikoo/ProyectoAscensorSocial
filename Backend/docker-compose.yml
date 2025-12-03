@@ -1,9 +1,0 @@
-services:
-  backend:
-    container_name: backend-AS
-    image: backend-as:1
-    restart: always
-    ports:
-      - "8443:3000"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
