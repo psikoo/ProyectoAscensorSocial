@@ -1,5 +1,5 @@
 #!/bin/bash
 cd backend
-#npm install
+npm install
 node .
 cd ..

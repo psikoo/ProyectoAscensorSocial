@@ -1,4 +1,1 @@
-cd backend
-@REM npm install
-node .
-cd ..
+cd backend & npm install & node . & cd ..
